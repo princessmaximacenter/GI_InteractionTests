@@ -17,8 +17,7 @@ if (argsLen < 1) {
 if ("--help" %in% args) {
     cat("
         data prep R script
-        script to generate matrix and frequency plots for germline and 
-        somatic alterations.
+        script to generate gene sample matrix 
 
         Arguments:
         --arg1=input file       -input file with four columns

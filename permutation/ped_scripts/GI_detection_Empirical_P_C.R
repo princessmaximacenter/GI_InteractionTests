@@ -22,15 +22,17 @@ if ("--help" %in% args) {
         Arguments:
         --arg1=cancer type                   -name of cancer type
         --arg2=source of dataset             -project, e.g. dkfz
-        --arg3=number of permutations        -default: 1000
+        --arg3=number of permutations        -default: 250
         \n")
          q(save = "no")
 }
 
 cancer_type   <- args[1]
 d_source      <- args[2]
-n_perm        <- ifelse(length(args) < 3, 1000, as.numeric(args[3]))
-print(cancer_type)
+n_perm        <- ifelse(length(args) < 3, 250, as.numeric(args[3]))
+
+cat("ct: ", cancer_type, ", project: ", d_source, ", n_perm: ", 
+    n_perm, "\n", sep="")
 
 # import libraries
 source("./ped_scripts/functions.R")

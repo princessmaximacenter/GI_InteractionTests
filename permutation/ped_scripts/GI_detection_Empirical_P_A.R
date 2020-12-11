@@ -22,15 +22,18 @@ if ("--help" %in% args) {
         Arguments:
         --arg1=cancer type                   -name of cancer type
         --arg2=source of dataset             -project, e.g. dkfz
-        --arg3=number of RDS files           -default = 20
+        --arg3=number of RDS files           -default = 5
         \n")
          q(save = "no")
 }
 
 cancer_type  <- args[1]
 d_source     <- args[2]
-n_rds        <- ifelse(length(args) < 3, 20, as.numeric(args[3]))
-print(cancer_type)
+n_rds        <- ifelse(length(args) < 3, 5, as.numeric(args[3]))
+
+cat("ct: ", cancer_type, ", project: ", d_source, ", n_rds: ", 
+    n_rds, "\n", sep="")
+
 
 # import libraries
 source("./ped_scripts/functions.R")

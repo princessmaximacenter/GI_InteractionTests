@@ -38,8 +38,9 @@ seed          <- as.numeric(args[1])
 source        <- args[2]
 n_perm        <- ifelse(length(args) < 3, 50, as.numeric(args[3]))
 
-print(cancer_type)
-print(seed)
+cat("ct: ", cancer_type, ", seed: ", seed, ", project: ", source, ", n_perm: ", 
+    n_perm, "\n", sep="")
+
 # import libraries
 source("./ped_scripts/functions.R")
 

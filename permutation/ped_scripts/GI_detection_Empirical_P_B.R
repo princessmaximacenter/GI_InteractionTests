@@ -31,7 +31,9 @@ if ("--help" %in% args) {
 cancer_type      <- args[1]
 d_source         <- args[2]
 n_rds            <- args[3]
-print(cancer_type)
+
+cat("ct: ", cancer_type, ", project: ", d_source, ", n_rds: ", 
+    n_rds, "\n", sep="")
 
 # import libraries
 source("./ped_scripts/functions.R")

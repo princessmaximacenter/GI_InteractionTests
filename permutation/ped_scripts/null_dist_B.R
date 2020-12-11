@@ -29,6 +29,10 @@ if ("--help" %in% args) {
 cancer_type      <- args[1]
 seed             <- as.numeric(args[2])
 d_source         <- args[3]
+
+cat("ct: ", cancer_type, ", project: ", d_source, ", seed: ", 
+    seed, "\n", sep="")
+
 options(scipen = 100)
 
 # import libraries

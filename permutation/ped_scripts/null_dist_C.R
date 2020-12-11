@@ -20,22 +20,28 @@ if ("--help" %in% args) {
         Arguments:
         --arg1=cancer type                   -name of cancer type
         --arg2=source of dataset             -project, e.g. dkfz
-        --arg3=number of RDS files           -default = 20
-        --arg4=number of sampled mtxs        -default = 50
-        --arg5=number of permuted mtxs       -default = 1000
+        --arg3=number of RDS files           -default = 5
+        --arg4=number of sampled mtxs        -default = 25
+        --arg5=number of permuted mtxs       -default = 250
         --arg6=startnr of sampled mtxs       -default = 1
-        --arg7=endnr of sampled mtxs         -default = 50
+        --arg7=endnr of sampled mtxs         -default = 25
         \n")
     q(save = "no")
 }
 
 cancer_type  <- args[1]
 d_source     <- args[2]
-n_RDS_files  <- ifelse(length(args) < 3, 20, as.numeric(args[3]))
-n_smpl_mtx   <- ifelse(length(args) < 4, 50, as.numeric(args[4]))
-n_perm_mtx   <- ifelse(length(args) < 5, 1000, as.numeric(args[5]))
+n_RDS_files  <- ifelse(length(args) < 3, 5, as.numeric(args[3]))
+n_smpl_mtx   <- ifelse(length(args) < 4, 25, as.numeric(args[4]))
+n_perm_mtx   <- ifelse(length(args) < 5, 250, as.numeric(args[5]))
 n_start_mtx  <- ifelse(length(args) < 6, 1, as.numeric(args[6]))
-n_stop_mtx   <- ifelse(length(args) < 7, 50,  as.numeric(args[7]))
+n_stop_mtx   <- ifelse(length(args) < 7, 25,  as.numeric(args[7]))
+
+cat("ct: ", cancer_type, ", project: ", d_source, 
+    ", n_RDS_files: ", n_RDS_files, ", n_smpl_mtx: ", n_smpl_mtx, 
+    ", n_perm_mtx:", n_perm_mtx,  ", n_start_mtx: ", n_start_mtx, 
+    ", n_stop_mtx: ", n_stop_mtx, 
+    "\n", sep="")
                        
 options(scipen = 100)
 

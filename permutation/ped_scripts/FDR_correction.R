@@ -28,6 +28,8 @@ if ("--help" %in% args) {
 cancer_type      <- args[1]
 d_source         <- args[2]
 
+cat("ct: ", cancer_type, ", project: ", d_source, "\n", sep="")
+
 source("./ped_scripts/functions.R")
 
 null_path <- file.path("./ped_results", d_source, "emp_p_results/null_dist")

@@ -20,16 +20,19 @@ if ("--help" %in% args) {
         Arguments:
         --arg1=cancer type                   -name of cancer type
         --arg2=source of dataset             -project, e.g. dkfz
-        --arg3=nb of random mtxs             -default=50
+        --arg3=nb of random mtxs             -default=25
         \n")
     q(save = "no")
 }
 
 cancer_type  <- args[1]
 d_source     <- args[2]
-nperm        <- ifelse(length(args) < 3, 50, as.numeric(args[3]))
+nperm        <- ifelse(length(args) < 3, 25, as.numeric(args[3]))
 
 options(scipen = 100)
+
+cat("ct: ", cancer_type, ", project: ", d_source, ", n_perm: ", 
+    n_perm, "\n", sep="")
 
 # import libraries
 library(gtools)

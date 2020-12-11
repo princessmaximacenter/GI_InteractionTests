@@ -27,7 +27,8 @@ if ("--help" %in% args) {
 cancer_type      <- "PAN"
 source           <- args[1]
 
-print(cancer_type)
+cat("ct: ", cancer_type, ", project: ", source, "\n", sep="")
+
 # import libraries
 source("./ped_scripts/functions.R")
 

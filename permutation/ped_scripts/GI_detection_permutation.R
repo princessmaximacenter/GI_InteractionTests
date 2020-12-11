@@ -35,12 +35,13 @@ if ("--help" %in% args) {
 }
 
 cancer_type   <- args[1]
-seed          <- as.numeric(args[2]) # 1
+seed          <- as.numeric(args[2])
 source        <- args[3]
-n_perm        <- ifelse(length(args) < 3, 50, as.numeric(args[4]))
+n_perm        <- ifelse(length(args) < 4, 50, as.numeric(args[4]))
 
-print(cancer_type)
-print(seed)
+cat("ct: ", cancer_type, ", seed: ", seed, ", project: ", source, ", n_perm: ", 
+    n_perm, "\n", sep="")
+
 # import libraries
 source("./ped_scripts/functions.R")
 
