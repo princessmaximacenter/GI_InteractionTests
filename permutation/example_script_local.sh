@@ -59,10 +59,10 @@ Rscript ./ped_scripts/null_dist_A.R PAN dkfz 25
 # Step 4B: Compare sampled mtxs with mtxs in RDS file
 for i in {1..5}
 do
-Rscript ./ped_scripts/null_dist_B.R HGG_K27M $i dkfz
-Rscript ./ped_scripts/null_dist_B.R HGGother $i dkfz
-Rscript ./ped_scripts/null_dist_B.R MB_SHH $i dkfz
-Rscript ./ped_scripts/null_dist_B.R PAN $i dkfz
+  Rscript ./ped_scripts/null_dist_B.R HGG_K27M $i dkfz
+  Rscript ./ped_scripts/null_dist_B.R HGGother $i dkfz
+  Rscript ./ped_scripts/null_dist_B.R MB_SHH $i dkfz
+  Rscript ./ped_scripts/null_dist_B.R PAN $i dkfz
 done
 
 # Step 4C: Merge all data and write p-values to file

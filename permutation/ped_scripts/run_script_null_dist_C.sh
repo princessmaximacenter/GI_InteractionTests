@@ -4,8 +4,8 @@ set -eo pipefail
 showUsage ()
 {
   echo "usage:
-  run_script_null_dist_C.sh -p project -m vmem -c cantype -t hrs -r n_rds
-                            -s n_smpl -n n_perm -l logdir -f firstmtx -e endmtx
+  run_script_null_dist_C.sh -p project -m vmem -c cantype -t hrs -r n_rds \
+  -s n_smpl -n n_perm -l logdir -f firstmtx -e endmtx
 
   parameters:
     -p : name of project folder

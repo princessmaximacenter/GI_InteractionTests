@@ -4,7 +4,8 @@ set -eo pipefail
 showUsage ()
 {
   echo "usage:
-  batch_run_script_emp_P_B.sh -p project -m vmem -c cantype -t hrs -s startseed -o stopseed -l logdir
+  batch_run_script_emp_P_B.sh -p project -m vmem -c cantype -t hrs -s startseed \
+  -o stopseed -l logdir
 
   parameters:
     -p : name of project folder
