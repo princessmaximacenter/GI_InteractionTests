@@ -12,10 +12,10 @@ fi
 project=$1
 ct=$2
 ns=$3
-come=${4:come}
+come=${4:-come}
 
-if [ "$SLURM_ARRAY_TASK_ID" = "undefined" ]; then
-  nmut=${5:0}
+if [ "$SLURM_ARRAY_TASK_ID" = "undefined" ] || [ -z "$SLURM_ARRAY_TASK_ID" ]; then
+  nmut=${5:-0}
 else
   nmut=$(($SLURM_ARRAY_TASK_ID - 1))
 fi
