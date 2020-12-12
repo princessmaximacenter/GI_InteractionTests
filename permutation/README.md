@@ -109,7 +109,7 @@ The **PAN cancer test** runs in 2 steps:
 
 **local:**
 
-```bash
+```none
 Rscript ./ped_scripts/GI_detection_permutation_PAN_A.R <project>
 Rscript ./ped_scripts/GI_detection_permutation_PAN_B.R <seed> <project> <n_perm>
 ```
