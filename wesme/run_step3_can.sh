@@ -2,7 +2,12 @@
 
 set -eo pipefail
 
-source wsampling/bin/activate
+if [ -d "./wesme_venv" ]
+then
+  source wesme_venv/bin/activate
+else
+  echo "Error: Cannot load virtual environment. Directory wesme_venv does not exists."
+fi
 
 project=$1
 ct=$2
@@ -32,4 +37,7 @@ do
   fi
 done
 
-deactivate
+if [ -d "./wesme_venv" ]
+then
+  deactivate
+fi
