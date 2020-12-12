@@ -98,7 +98,7 @@ Below, we will give examples of each steps for the dkfz test project. Run the co
 
 example:
 
-`./run_step1_can.sh dkfz HGG_K27M 100`
+`./run_step1_can.sh dkfz HGG_K27M 10000`
 
 
 **on hpc:**
@@ -129,14 +129,14 @@ You can check the status of the job in *SLURM* with `squeue -u <username>`. Afte
 
 **local**:
 
-`./run_step2_can_i_slurm.sh <project> <ct> <n_sampl> <come=come> <nmut=0> <pval_thr=1.1>`
+`./run_step2_can_i_slurm.sh <project> <ct> <n_sampl> <come=come> <nmut=1> <pval_thr=1.1>`
 
 example:
 
 ```bash
 for i in {1..5}
 do
-  `./run_step2_can_i_slurm.sh dkfz HGG_K27M 100 come $i`
+  `./run_step2_can_i_slurm.sh dkfz HGG_K27M 10000 come $i`
 done
 ```
 

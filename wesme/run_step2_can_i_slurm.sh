@@ -15,7 +15,8 @@ ns=$3
 come=${4:-come}
 
 if [ "$SLURM_ARRAY_TASK_ID" = "undefined" ] || [ -z "$SLURM_ARRAY_TASK_ID" ]; then
-  nmut=${5:-0}
+  taskid=${5:-1}
+  nmut=$(($taskid - 1))
 else
   nmut=$(($SLURM_ARRAY_TASK_ID - 1))
 fi

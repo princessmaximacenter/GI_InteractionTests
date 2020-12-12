@@ -12,7 +12,7 @@ fi
 project=$1
 ct=$2
 nmut=$3
-come=${4:come}
+come=${4:-come}
 pths_def=(1.1)
 pths=${5:-${pths_def[@]}}
 
