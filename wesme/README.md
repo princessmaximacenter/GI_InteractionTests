@@ -136,7 +136,7 @@ example:
 ```bash
 for i in {1..5}
 do
-  `./run_step2_can_i_slurm.sh dkfz HGG_K27M 1000 come $i`
+  `./run_step2_can_i_slurm.sh dkfz HGG_K27M 100 come $i`
 done
 ```
 
