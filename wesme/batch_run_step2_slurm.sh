@@ -5,8 +5,8 @@ set -eo pipefail
 showUsage ()
 {
   echo "usage:
-  batch_run_step2.sh -p project -n npermut -s nsampl -m vmem -c cantype
-                     -t hrs -v pval -o come -f first -l last
+  batch_run_step2_slurm.sh -p project -n npermut -s nsampl -m vmem -c cantype
+                           -t hrs -v pval -o come -f first -l last
 
   parameters:
     -p : name of project folder
