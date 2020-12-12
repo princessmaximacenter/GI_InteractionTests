@@ -30,7 +30,6 @@ The permutation test consists of several steps:
 
 - Create a project directory in `ped_data` (e.g. *dkfz*) and put the gene sample file in this directory.
 
-
  
 ## Step 1 - Generate mutation-sample matrix
 
@@ -132,6 +131,7 @@ done
 ```
 
 For the PAN cancer analysis, run all following steps, but choose *PAN* as cancer type
+
  
 ## Step 3 - Calculate p-values 
 
