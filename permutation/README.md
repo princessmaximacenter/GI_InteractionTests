@@ -265,7 +265,7 @@ example:
 `run_script_null_dist_A.sh -p dkfz`
 
 
-## Step B: Compare sampled matrices with matrices in RDS file
+### Step B: Compare sampled matrices with matrices in RDS file
 
 **local:**
 
