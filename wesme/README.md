@@ -204,16 +204,16 @@ Next, you can run the PAN cancer test. To reduce memory and time requirements, r
 
 ```none
 # PAN cancer step 1
-./batch_run_step1_PAN.sh -p dkfz -s 10000 -o co
-./batch_run_step1_PAN.sh -p dkfz -s 10000 -o me
+./batch_run_step1_PAN_slurm.sh -p dkfz -s 10000 -o co
+./batch_run_step1_PAN_slurm.sh -p dkfz -s 10000 -o me
 
 # PAN cancer step 2. Ask for at least 10G memory, to avoid memory errors
-./batch_run_step2_PAN.sh -p dkfz -n 300 -s 10000 -m 10G -o co 
-./batch_run_step2_PAN.sh -p dkfz -n 300 -s 10000 -m 10G -o me 
+./batch_run_step2_PAN_slurm.sh -p dkfz -n 300 -s 10000 -m 10G -o co 
+./batch_run_step2_PAN_slurm.sh -p dkfz -n 300 -s 10000 -m 10G -o me 
 
 # PAN cancer step 3
-./batch_run_step3.sh -p dkfz -n 300 -m 50G -c PAN -o co
-./batch_run_step3.sh -p dkfz -n 300 -m 50G -c PAN -o me
+./batch_run_step3_slurm.sh -p dkfz -n 300 -m 50G -c PAN -o co
+./batch_run_step3_slurm.sh -p dkfz -n 300 -m 50G -c PAN -o me
 ```
 
 
