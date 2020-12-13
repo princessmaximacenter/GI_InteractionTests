@@ -7,6 +7,7 @@ then
   source wesme_venv/bin/activate
 else
   echo "Error: Cannot load virtual environment. Directory wesme_venv does not exists."
+  echo "Running without virtual python environment"
 fi
 
 project=$1

@@ -174,7 +174,7 @@ do
 
   hold_jid=$(sbatch --array ${first}-${last}%50 --parsable \
   --time=${hr}:00:00 --mem=${vmem} \
-  -e ${logdir}/subjobs/st2_${proj_name}_${ct}_${come}_\$TASK_ID.e \
+  -e ${logdir}/subjobs/st2_${proj_name}_${ct}_${come}_\%a.e \
   -o /dev/null \
   -J ${ct}_${proj_name}_${come}_st2_ws \
   ./run_step2_can_i_slurm.sh ${project} ${ct} ${nsampl} ${come} 0 ${pth} | awk -F. '{print $1}')
