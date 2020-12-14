@@ -43,6 +43,10 @@ To begin using the virtual environment, it needs to be activated
 
 `pip install -r requirements.txt`
 
+if you get an error message, try:
+
+`python -m pip install -r requirements.txt`
+
 If you are done working in the virtual environment, you can deactivate it:
 
 `deactivate`
@@ -120,7 +124,7 @@ parameters:
 
 example:
 
-`./batch_run_step1.sh -p dkfz -s 10000`
+`./batch_run_step1_slurm.sh -p dkfz -s 10000`
 
 
 You can check the status of the job in *SLURM* with `squeue -u <username>`. After the job is finished, you can find a log file with information about the job in the **log** directory.
@@ -162,7 +166,7 @@ parameters:
 
 example:
 
-`./batch_run_step2.sh -p dkfz -n 300 -s 10000`
+`./batch_run_step2_slurm.sh -p dkfz -n 300 -s 10000`
 
 
 ### STEP 3 Calculate an empirical FDR
@@ -193,7 +197,7 @@ parameters:
 
 example:
 
-`./batch_run_step3.sh -p dkfz -n 300`
+`./batch_run_step3_slurm.sh -p dkfz -n 300`
 
 
 ### Run the PAN cancer test
