@@ -203,7 +203,6 @@ example:
 ### Run the PAN cancer test
 
 Next, you can run the PAN cancer test. To reduce memory and time requirements, run the co-occurrence and mutual exclusivity test separately using the parameter -o.
-Before running the scripts, create a `PAN_smut_list.txt` file first and put it in the `<projectname>/data/PAN` directory
 
 **on hpc:**
 
