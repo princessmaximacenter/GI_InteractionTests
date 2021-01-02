@@ -1,4 +1,4 @@
-# Run Permutation test, local and on hpc
+# Run WeSME test, local and on hpc
 
 
 Copy the **wesme** folder to your local machine or high performance cluster (hpc). The WeSME test is written in Python. To run the WeSME test, Python 2.7 and additional modules need to be installed. The file `requirements.txt` lists the modules and their versions:
@@ -203,6 +203,7 @@ example:
 ### Run the PAN cancer test
 
 Next, you can run the PAN cancer test. To reduce memory and time requirements, run the co-occurrence and mutual exclusivity test separately using the parameter -o.
+Before running the scripts, create a `PAN_smut_list.txt` file first and put it in the `<projectname>/data/PAN` directory
 
 **on hpc:**
 
@@ -237,6 +238,7 @@ Use a table such as the example below to note which steps are running/finished a
 | HGG_K27M    |       |    |    |       |    |    |       |    |    |
 | HGG_other   |       |    |    |       |    |    |       |    |    |
 | MB_SHH      |       |    |    |       |    |    |       |    |    |
+| PAN         |       |    |    |       |    |    |       |    |    |
 
 
 
