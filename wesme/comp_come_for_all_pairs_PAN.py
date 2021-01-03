@@ -36,7 +36,7 @@ parser.add_argument("-o", "--output", type=str, help="output file name")
 
 args = parser.parse_args()
 nws, mtype, pth, proj, come = args.nws, args.mtype, args.pth, args.proj, args.come
-logging.debug("comp ME for PAN, %s" %(mtype))
+logging.debug("comp %s for PAN, %s" %(come, mtype))
 
 # INPUT_FILES/DIRECTORIES
 # JD: changed "data/" in data_dir
