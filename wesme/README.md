@@ -251,7 +251,7 @@ In the example below we will run the test an additional 9 rounds. You can also c
 
 ### Step 1: Create subdirectories
 
-Run `create_conf_subdirs.s`h to create subdirectories:
+Run `create_conf_subdirs.sh` to create subdirectories:
 
 `./create_conf_subdirs.sh <projectname> <startseed> <endseed>`
 
@@ -275,12 +275,23 @@ Example:
 
 `./create_cantypes_conf.sh dkfz 1 9`
 
-Copy a selection of cancer types from `cantypes_all.txt or cantypes_ct.txt` and paste in `cantypes.txt` to only run a subset to test.
+Copy a selection of cancer types from `cantypes_all.txt` or `cantypes_ct.txt` and paste in `cantypes.txt` to only run a subset to test (see below).
 
 ### Step 3: Run the WeSME test
 
-Connect to your hpc submit node, cd to your wesme directory and run the WeSME test. 
-Edit `cantypes.txt` to limit the group of similar (in size) cancer types that need about the same amount of time and memory. Or specify cancer type with ‘-c’.  In this case, you need to set first and last seed in step 1 with `-f` and `-l`.
+On your hpc, run the WeSME test from the wesme directory. 
+Edit `cantypes.txt` to limit the group of similar (in size) cancer types that need about the same amount of time and memory. 
+
+Example:
+
+```none
+./batch_run_step1_conf_slurm.sh -p dkfz_conf -s 10000
+./batch_run_step2_slurm.sh -p dkfz_conf -n 300 -s 10000
+./batch_run_step3_slurm.sh -p dkfz_conf -n 300
+```
+
+Or specify cancer type with `-c`.  In this case, you need to set first and last seed in step 1 with `-f` and `-l`: 
+
 
 Example:
 
