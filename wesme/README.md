@@ -242,6 +242,92 @@ Use a table such as the example below to note which steps are running/finished a
 
 
 
+---
+
+## Repeat WeSME test to increase confidence in  results
+
+After your first WeSME run, you can repeat the test (each time with another randomization seed) to increase the confidence in your results. You can use the existing directory structure and files of your project. In the first steps you will create copies of these directories and files.
+In the example below we will run the test an additional 9 rounds. You can also choose to only create the project folder structure and the mutation file as described above in the section **Setup up a project** and then continue with running 10 confidence runs as described below.
+
+### Step 1: Create subdirectories
+
+Run `create_conf_subdirs.s`h to create subdirectories:
+
+`./create_conf_subdirs.sh <projectname> <startseed> <endseed>`
+
+
+Example:
+
+`./create_conf_subdirs.sh dkfz 1 9`
+
+
+### Step 2: Create cantypes files
+
+Copy `cantypes.txt` to `cantypes_ct.txt` to have an unchanged file with all cancer types sorted on cancer type.
+
+Example:
+
+`cp ./dkfz_conf/cantypes.txt ./dkfz_conf/cantypes_ct.txt`
+
+Run `create_cantypes_conf.sh` to create a file `cantypes_all.txt` that contains all cancer types, sorted on seed. 
+
+Example:
+
+`./create_cantypes_conf.sh dkfz 1 9`
+
+Copy a selection of cancer types from `cantypes_all.txt or cantypes_ct.txt` and paste in `cantypes.txt` to only run a subset to test.
+
+### Step 3: Run the WeSME test
+
+Connect to your hpc submit node, cd to your wesme directory and run the WeSME test. 
+Edit `cantypes.txt` to limit the group of similar (in size) cancer types that need about the same amount of time and memory. Or specify cancer type with ‘-c’.  In this case, you need to set first and last seed in step 1 with `-f` and `-l`.
+
+Example:
+
+```none
+./batch_run_step1_conf_slurm.sh -p dkfz_conf -s 10000 -c HGG_K27M -f 1 -l 5
+./batch_run_step2_slurm.sh -p dkfz_conf -n 300 -s 10000 -c HGG_K27M_1
+./batch_run_step3_slurm.sh -p dkfz_conf -n 300 -c HGG_K27M_1
+```
+
+### Step 4
+
+After a successful run remove big intermediate files with: 
+`rm -rf ./<projectname>_conf/preproc/permuted_pv`
+
+### Step 5
+
+After running the test per cancer type you can now run the PAN cancer test. Run the script `create_conf_PAN_dirs.sh` to create the necessary (links to) directories to do the PAN cancer test.
+
+`./create_conf_PAN_dirs.sh <projectname> 1 9`
+
+### Step 6
+
+Run the WeSME PAN cancer test. Run for co (co-occurrence) and me (mutual exclusivity) separately. Run first for `<projectname>_conf_1` and check if the memory (-m in G) and time (-t in hours) were sufficient. Otherwise run again.
+
+example:
+
+```none
+./batch_run_step1_PAN.sh -p dkfz_conf_1 -s 10000 -m 10G -o co -t 1
+./batch_run_step1_PAN.sh -p dkfz_conf_1 -s 10000 -m 10G -o me -t 1
+
+./batch_run_step2_PAN.sh -p dkfz_conf_1 -n 300 -s 10000 -m 10G -o co -t 1
+./batch_run_step2_PAN.sh -p dkfz_conf_1 -n 300 -s 10000 -m 10G -o me -t 1
+
+./batch_run_step3.sh -p dkfz_conf_1 -n 300 -m 50G -c PAN -t 2 -o co
+./batch_run_step3.sh -p dkfz_conf_1 -n 300 -m 50G -c PAN -t 2 -o me
+```
+
+### Step 7
+
+Move the results to the proper directory
+`./copy_conf_PAN_files.sh dkfz 1 9`
+
+
+
+
+
+
 
 
 
