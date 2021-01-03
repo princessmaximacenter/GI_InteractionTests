@@ -69,6 +69,7 @@ except OSError:
 cantypes = [line.rstrip('\n') for line in open(proj + '/cantypes.txt')]
 
 alt_list_dic = {}
+alt_samples = {}
 samples = {}
 gene_ks = {}
 nsamples = {}
@@ -105,11 +106,11 @@ for ct in cantypes:
     # read mutation profile
     if not os.path.exists(mut_file_ct):
         break
-    alt_list_dic[ct], samples[ct] = \
+    alt_list_dic[ct], alt_samples[ct] = \
     io_utils.read_mut_list(mut_file_ct, samples=True)
     gene_ks[ct] = dict([(gene, len(alt_list_dic[ct][gene])) \
            for gene in alt_list_dic[ct]])  # gene -> cover size dic
-    nsamples[ct] = len(samples[ct])
+    nsamples[ct] = len(alt_samples[ct])
 
     # read weighted sampling files for all k
     # use the weighted sampling files in cur_wrs_dir/ct
@@ -213,6 +214,32 @@ for gp in ex_cover_size_flt:
 rows = []
 for gp in ws_pv_dic:
     rows.append((gp[0], gp[1], -1, ws_pv_dic[gp]))
+    
+# write the PAN mut file
+# TODO: remove double samples
+# if mut file doesn't exist, create one
+if not os.path.exists(mut_file):
+    if not os.path.exists(os.path.dirname(mut_file)):
+        os.makedirs(os.path.dirname(mut_file))
+            
+    list_dic_PAN = {}
+    samples_PAN = []
+    list_dic_ct = {}
+    startix = 0
+    for ct in cantypes:
+        len_ct=len(alt_samples[ct])
+        samples_PAN.extend(alt_samples[ct])
+        # change indices in alt_list_dic: increase with startix
+        for g in alt_list_dic[ct]:            
+            list_dic_ct[g]=[ix+startix for ix in alt_list_dic[ct][g]] 
+            if g not in list_dic_PAN:
+                list_dic_PAN[g] = list_dic_ct[g]
+            else:
+                list_dic_PAN[g].extend(list_dic_ct[g])    
+        startix += len_ct
+        
+    io_utils.write_alt_list(list_dic_PAN, filename = mut_file , 
+                                samples = samples_PAN)
 
 # write the results
 all_pvs = pandas.DataFrame(data=rows,
