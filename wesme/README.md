@@ -202,7 +202,7 @@ example:
 
 ### Run the PAN cancer test
 
-Next, you can run the PAN cancer test. To reduce memory and time requirements, run the co-occurrence and mutual exclusivity test separately using the parameter -o.
+Next, when you have tested all cancer types, you can run the PAN cancer test. To reduce memory and time requirements, run the co-occurrence and mutual exclusivity test separately using the parameter -o.
 
 **on hpc:**
 
