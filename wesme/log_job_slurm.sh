@@ -20,6 +20,20 @@ function seconds2time ()
    fi
 }
 
+function Kb2Gb ()
+{
+  x=$1
+  k=${x::-1}
+  b=$((k * 1024))
+  d=''; s=0; S=(Bytes {K,M,G,T,E,P,Y,Z}B)
+  while ((b > 1024)); do
+    d="$(printf ".%02d" $((b % 1024 * 100 / 1024)))"
+    b=$((b / 1024))
+    let s++
+  done
+  echo "$b$d ${S[$s]}"
+}
+
 project=$1
 ct=$2
 ns=$3
@@ -75,7 +89,8 @@ maxruntime=$(echo "${runtimes[*]}" | sort -nr | head -n1)
 echo "max runtime:" ${maxruntime}
 
 IFS=" "
-maxvmems=($(sacct -j ${jobid} --format=MaxVMSize | awk '{gsub ("MaxVMSize|-", "", $1); print $1}' |  awk '/./'))
+maxvmems=($(sacct -j ${jobid} --format=MaxRSS | awk '{gsub ("MaxRSS|-", "", $1); print $1}' |  awk '/./'))
 IFS=$'\n'
 maxvmem=$(echo "${maxvmems[*]}" | sort -nr | head -n1)
-echo "max vmem:" ${maxvmem}
+maxvmem_readable=$(Kb2Gb ${maxvmem})
+echo "max vmem:" ${maxvmem_readable}
