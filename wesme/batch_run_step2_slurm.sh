@@ -149,7 +149,7 @@ declare -a cantypes_def
 readarray -t cantypes_def < ${project}/cantypes.txt
 
 # set optional values
-: ${vmem:="10"}
+: ${vmem:="10G"}
 : ${hr:="8"}
 : ${pth:="1.1"}
 : ${come:="come"}

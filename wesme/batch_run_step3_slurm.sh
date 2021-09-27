@@ -126,7 +126,7 @@ then
 fi
 
 # set optional values
-: ${vmem:="50"}
+: ${vmem:="50G"}
 : ${hr:="12"}
 : ${pth:="1.1"}
 : ${come:="come"}
