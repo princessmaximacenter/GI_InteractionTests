@@ -78,7 +78,9 @@ ws_k_cover_dic = {}
 ws_ex_cover_sizes_dic = {}
 ex_cover_sizes_dic = {}
 ex_cover_size = {}
-co_cover_size = {}
+#co_cover_size = {}
+cover_sizes = {}
+
 gene_pairs_ct = {}
 
 ws_pv_dic = {}  # WeSME
@@ -137,22 +139,40 @@ for ct in cantypes:
            set1 = set(covers[0])
            set2 = set(covers[1])
            #cover_sizes = ws_mut_ex.compute_ex_cover(covers)
-           cover_sizes = set1.symmetric_difference(set2)
-           cover_sizes_co = set1.intersection(set2)
+           cover_sizes_me = set1.symmetric_difference(set2)
+           #cover_sizes_co = set1.intersection(set2)
            ex_cover_size[gene_pairs] = ex_cover_size.get(gene_pairs, 0) + \
-           len(cover_sizes)
-           co_cover_size[gene_pairs] = co_cover_size.get(gene_pairs, 0) + \
-           len(cover_sizes_co)
-           ex_cover_sizes_dic.setdefault(gene_pairs, {}).update({ct: [len(c) for c in covers]})
+           len(cover_sizes_me)
+           #co_cover_size[gene_pairs] = co_cover_size.get(gene_pairs, 0) + \
+           #len(cover_sizes_co)
+           cover_len = [len(c) for c in covers]
+
+           cover_sizes[gene_pairs] = [sum(x) for x in \
+           zip(cover_sizes.get(gene_pairs,[0,0]), cover_len)]
+
+           ex_cover_sizes_dic.setdefault(gene_pairs, {}).update({ct: cover_len})
 
 
 # only gene pairs for which at least 2 samples have only one of these genes
 # mutated are included
 # only use gene pairs with me count > 2
-if come=="me":
-    ex_cover_size_flt = {k:v for (k,v) in ex_cover_size.iteritems() if v > 2}
-else:
-    ex_cover_size_flt = {k:v for (k,v) in co_cover_size.iteritems() if v > 0}
+# TODO: change this, setting such a threshold also applies for the fdr
+# randomization runs, this creates a bias since only gene pairs with co or me
+# count are kept, while one assumes that with randomization existing real
+# co and me interactions are broken. In other words: if there is a signal
+# in the data, we expect more co and me's than when randomized. Therefor we
+# should include all gene pairs, even if this means more computation!!
+# or apply a filter that will include the same gene pairs with or without
+# randomization. For example: select all gene pairs where both genes are
+# mutated in at least 2 samples each, regardless of co or me count
+
+
+#if come=="me":
+#    ex_cover_size_flt = {k:v for (k,v) in ex_cover_size.iteritems() if v > 2}
+#else:
+#    ex_cover_size_flt = {k:v for (k,v) in co_cover_size.iteritems() if v > 0}
+ex_cover_size_flt =  {k:v for (k,v) in cover_sizes.iteritems() \
+if v[0] > 1 and v[1] > 1}
 
 # for each gene pair:
 for gp in ex_cover_size_flt:
