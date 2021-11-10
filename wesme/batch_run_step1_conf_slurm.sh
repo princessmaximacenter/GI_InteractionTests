@@ -165,11 +165,11 @@ do
   -e ${logdir}/st1_${project}_${ct}_${come}.e \
   -o /dev/null \
   -J ${ct}_${project}_${come}_st1_ws \
-  ./run_step1_can.sh ${project} ${ct} ${nsampl} ${pth} ${vmem} ${hr} ${come} ${seed})
+  ./run_step1_can.sh ${project} ${ct} ${nsampl} ${come} ${seed} ${pth})
 
   sbatch -d $hold_jid -J ${ct}_${project}_${come}_st1_log \
   -o ${logdir}/st1_${project}_${ct}_${come}_${hold_jid}.o \
   -e /dev/null \
-  log_job.sh ${project} ${ct} ${nsampl} ${pth} ${vmem} ${hr} ${come} ${hold_jid} \
+  log_job_slurm.sh ${project} ${ct} ${nsampl} ${pth} ${vmem} ${hr} ${come} ${hold_jid} \
   undefined undefined ${logdir} 1
 done
