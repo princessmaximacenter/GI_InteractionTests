@@ -319,14 +319,14 @@ Run the WeSME PAN cancer test. Run for co (co-occurrence) and me (mutual exclusi
 example:
 
 ```none
-./batch_run_step1_PAN.sh -p dkfz_conf_1 -s 10000 -m 10G -o co -t 1
-./batch_run_step1_PAN.sh -p dkfz_conf_1 -s 10000 -m 10G -o me -t 1
+./batch_run_step1_PAN_SLURM.sh -p dkfz_conf_1 -s 10000 -m 10G -o co -t 1
+./batch_run_step1_PAN_SLURM.sh -p dkfz_conf_1 -s 10000 -m 10G -o me -t 1
 
-./batch_run_step2_PAN.sh -p dkfz_conf_1 -n 300 -s 10000 -m 10G -o co -t 1
-./batch_run_step2_PAN.sh -p dkfz_conf_1 -n 300 -s 10000 -m 10G -o me -t 1
+./batch_run_step2_PAN_SLURM.sh -p dkfz_conf_1 -n 300 -s 10000 -m 10G -o co -t 1
+./batch_run_step2_PAN_SLURM.sh -p dkfz_conf_1 -n 300 -s 10000 -m 10G -o me -t 1
 
-./batch_run_step3.sh -p dkfz_conf_1 -n 300 -m 50G -c PAN -t 2 -o co
-./batch_run_step3.sh -p dkfz_conf_1 -n 300 -m 50G -c PAN -t 2 -o me
+./batch_run_step3_SLURM.sh -p dkfz_conf_1 -n 300 -m 50G -c PAN -t 2 -o co
+./batch_run_step3_SLURM.sh -p dkfz_conf_1 -n 300 -m 50G -c PAN -t 2 -o me
 ```
 
 ### Step 7
