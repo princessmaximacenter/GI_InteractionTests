@@ -68,8 +68,8 @@ echo last task: ${lasttask}
 echo
 
 errorcount=$(grep -o -i "error" ${logdir}/*${project}_${ct}_${come}*.e | wc -l)
-failedstatus=$(sacct -j ${jobid} --format=State | awk '{gsub ("State|-|COMPLETED", ""); print $1}' |  awk '/./')
-exitstatus=$(sacct -j ${jobid}  --format=ExitCode | awk '{gsub ("ExitCode|-", ""); print $1}' |  awk '/./')
+failedstatus=$(sacct -j ${jobid} --format=State | awk '{gsub ("State|-|COMPLETED", ""); print $1}' |  awk '/./') | wc -l
+exitstatus=$(sacct -j ${jobid}  --format=ExitCode | awk '{gsub ("ExitCode|-|0:0", ""); print $1}' |  awk '/./') | uniq
 if [ ${errorcount} -ge 1  ] || [ ${failedstatus} -ge 1 ] || [ ${exitstatus} -ge 1 ]
 then
   echo job finished with ERRORS "(error count: $errorcount, failed: $failedstatus, exit>0: $exitstatus)"
